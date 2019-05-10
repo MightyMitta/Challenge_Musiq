@@ -4,19 +4,65 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Musiq"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+        Title="MainWindow" Height="768" Width="1024" WindowStyle="None" DataContext="{Binding Source={StaticResource Locator}, Path=Main}" Background="#FF181818" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Menu>
-            <MenuItem Header="_Music"/>
+        <DockPanel HorizontalAlignment="Left">
+            <Button>
+                <fa:FontAwesome Padding="10" Margin="10,0,10,0" Icon="EllipsisH" FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
+        </DockPanel>
+        <DockPanel HorizontalAlignment="Right" Grid.Column="2">
+            <Button>
+                <fa:FontAwesome Padding="10" Margin="10,0,10,0" Icon="WindowMinimize" FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
+            <Button>
+                <fa:FontAwesome Padding="10" Margin="10,0,10,0" Icon="WindowMaximize" FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
+            <Button>
+                <fa:FontAwesome Padding="10" Margin="10,0,10,0" Icon="WindowClose" FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
+        </DockPanel>
+        <Menu Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1">
+            <MenuItem Header="_Music">
+                <MenuItem Header="_Add" Command="{Binding AddMusicCommand}"/>
+                <MenuItem Header="_Edit" Command="{Binding EditMusicCommand}"/>
+                <MenuItem Header="_Remove" Command="{Binding RemoveMusicCommand}"/>
+            </MenuItem>
+            <MenuItem Header="_Artist">
+                <MenuItem Header="_Add" Command="{Binding AddArtistCommand}"/>
+                <MenuItem Header="_Edit" Command="{Binding EditArtistCommand}"/>
+                <MenuItem Header="_Remove" Command="{Binding RemoveArtistCommand}"/>
+            </MenuItem>
+            <MenuItem Header="_Playlist">
+                <MenuItem Header="_Add" Command="{Binding AddPlaylistCommand}"/>
+                <MenuItem Header="_Edit" Command="{Binding EditPlaylistCommand}"/>
+                <MenuItem Header="_Remove" Command="{Binding RemovePlaylistCommand}"/>
+            </MenuItem>
         </Menu>
-        <Frame NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}" Grid.Row="1"/>
+        <StackPanel Background="#FF121212" Grid.Row="2">
+            <StackPanel>
+                <Button Margin="0,20,0,0" Width="150" Height="30" HorizontalContentAlignment="Left">
+                    <fa:FontAwesome Icon="Home" FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+                <Button Margin="0,0,0,0" Width="150" Height="30" HorizontalContentAlignment="Left">
+                    <fa:FontAwesome Icon="Search" FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Button>
+            </StackPanel>
+            <StackPanel>
+                <Label Content="Library"/>
+            </StackPanel>
+        </StackPanel>
+        <Frame Grid.Column="1" NavigationUIVisibility="Hidden" Content="{Binding CurrentPage}" Grid.Row="2"/>
     </Grid>
 </Window>

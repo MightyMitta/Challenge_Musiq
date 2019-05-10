@@ -12,6 +12,7 @@ namespace Musiq.ViewModel
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MenuViewModel>();
+            SimpleIoc.Default.Register<NewMusicViewModel>();
         }
 
         public MainViewModel Main
@@ -26,6 +27,14 @@ namespace Musiq.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MenuViewModel>();
+            }
+        }
+
+        public NewMusicViewModel NewMusic
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<NewMusicViewModel>();
             }
         }
 
