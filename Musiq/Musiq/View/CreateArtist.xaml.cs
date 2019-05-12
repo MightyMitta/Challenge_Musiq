@@ -10,16 +10,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Musiq.View
 {
     /// <summary>
-    /// Interaction logic for NewMusic.xaml
+    /// Interaction logic for CreateArtist.xaml
     /// </summary>
-    public partial class NewMusic : Window
+    public partial class CreateArtist : Page
     {
-        public NewMusic()
+        public CreateArtist()
         {
             InitializeComponent();
         }

@@ -13,20 +13,20 @@ namespace Musiq.ViewModel
     {
         private Page _currentPage;
 
-        #region Music RelayCommands
-        public RelayCommand AddMusicCommand { get; set; }
-        public RelayCommand EditMusicCommand { get; set; }
-        public RelayCommand RemoveMusicCommand { get; set; }
+        #region Song RelayCommands
+        public RelayCommand CreateSongCommand { get; set; }
+        public RelayCommand EditSongCommand { get; set; }
+        public RelayCommand RemoveSongCommand { get; set; }
         #endregion
 
         #region Artist RelayCommands
-        public RelayCommand AddArtistCommand { get; set; }
+        public RelayCommand CreateArtistCommand { get; set; }
         public RelayCommand EditArtistCommand { get; set; }
         public RelayCommand RemoveArtistCommand { get; set; }
         #endregion
 
         #region Playlist RelayCommands
-        public RelayCommand AddPlaylistCommand { get; set; }
+        public RelayCommand CreatePlaylistCommand { get; set; }
         public RelayCommand EditPlaylistCommand { get; set; }
         public RelayCommand RemovePlaylistCommand { get; set; }
         #endregion
@@ -42,13 +42,13 @@ namespace Musiq.ViewModel
             MessengerInstance.Register<PageMessage>(this, Message => SwitchPage(Message));
             MessengerInstance.Register<HistoryMessage>(this, Message => PageBack());
             #region RelayCommands
-            AddMusicCommand = new RelayCommand(AddMusic);
-            EditMusicCommand = new RelayCommand(EditMusic);
-            RemoveMusicCommand = new RelayCommand(RemoveMusic);
-            AddArtistCommand = new RelayCommand(AddArtist);
+            CreateSongCommand = new RelayCommand(CreateSong);
+            EditSongCommand = new RelayCommand(RemoveSong);
+            RemoveSongCommand = new RelayCommand(RemoveSong);
+            CreateArtistCommand = new RelayCommand(CreateArtist);
             EditArtistCommand = new RelayCommand(EditArtist);
             RemoveArtistCommand = new RelayCommand(RemoveArtist);
-            AddPlaylistCommand = new RelayCommand(AddPlaylist);
+            CreatePlaylistCommand = new RelayCommand(CreatePlaylist);
             EditPlaylistCommand = new RelayCommand(EditPlaylist);
             RemovePlaylistCommand = new RelayCommand(RemovePlaylist);
             HomeCommand = new RelayCommand(Home);
@@ -75,32 +75,34 @@ namespace Musiq.ViewModel
             CurrentPage = History.Pop();
             RaisePropertyChanged("CurrentPage");
         }
+
         // This method will change the Current Page to the Home page.
         public void Home()
         {
             MessengerInstance.Send(new PageMessage(new View.Menu()));
         }
+
         #region Music Methods
 
         // This method will open a new Window where the user can add a new song.
-        public void AddMusic()
+        public void CreateSong ()
         {
-            new NewMusic().ShowDialog();
+            MessengerInstance.Send(new PageMessage(new CreateSong()));
         }
-        public void RemoveMusic()
+        public void EditSong()
         {
 
         }
-        public void EditMusic()
+        public void RemoveSong()
         {
 
         }
         #endregion
 
         #region Artist Methods
-        public void AddArtist()
+        public void CreateArtist()
         {
-
+            MessengerInstance.Send(new PageMessage(new CreateArtist()));
         }
         public void EditArtist()
         {
@@ -113,9 +115,9 @@ namespace Musiq.ViewModel
         #endregion
 
         #region Playlist Methods
-        public void AddPlaylist()
+        public void CreatePlaylist()
         {
-
+            MessengerInstance.Send(new PageMessage(new CreatePlaylist()));
         }
         public void EditPlaylist()
         {

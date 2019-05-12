@@ -1,6 +1,7 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
+using Musiq.Model;
 
 namespace Musiq.ViewModel
 {
@@ -10,9 +11,12 @@ namespace Musiq.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            SimpleIoc.Default.Register<MusiqEntities>(true);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MenuViewModel>();
-            SimpleIoc.Default.Register<NewMusicViewModel>();
+            SimpleIoc.Default.Register<CreateArtistViewModel>(true);
+            SimpleIoc.Default.Register<CreateSongViewModel>(true);
+            SimpleIoc.Default.Register<CreatePlaylistViewModel>(true);
         }
 
         public MainViewModel Main
@@ -30,11 +34,25 @@ namespace Musiq.ViewModel
             }
         }
 
-        public NewMusicViewModel NewMusic
+        public CreateArtistViewModel CreateArtist
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<NewMusicViewModel>();
+                return ServiceLocator.Current.GetInstance<CreateArtistViewModel>();
+            }
+        }
+        public CreateSongViewModel CreateMusic
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CreateSongViewModel>();
+            }
+        }
+        public CreatePlaylistViewModel CreatePlaylist
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CreatePlaylistViewModel>();
             }
         }
 

@@ -67,4 +67,7 @@
   <ItemGroup>
     <RefactorLog Include="MusiqDb.refactorlog" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="MusiqDb.publish.xml" />
+  </ItemGroup>
 </Project>
