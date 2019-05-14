@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Musiq"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024"  DataContext="{Binding Source={StaticResource Locator}, Path=Main}" Background="#FF181818" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="MainWindow" Height="900" Width="1024"  DataContext="{Binding Source={StaticResource Locator}, Path=Main}" Background="#FF181818" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

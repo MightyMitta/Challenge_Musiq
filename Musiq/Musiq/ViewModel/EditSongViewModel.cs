@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,43 +12,35 @@ using Musiq.Model;
 
 namespace Musiq.ViewModel
 {
-    public class CreateSongViewModel : ViewModelBase
+    public class EditSongViewModel : ViewModelBase
     {
         public ObservableCollection<Artist> Artists { get; set; }
         public MusiqEntities MusiqEntities { get; set; }
-        public RelayCommand CreateNewArtist { get; set; }
-        public RelayCommand CancelNewArtist { get; set; }
+        public RelayCommand EditSong { get; set; }
+        public RelayCommand CancelEditSong { get; set; }
         public RelayCommand UploadFileCommand { get; set; }
         public Song Song { get; set; }
-        public CreateSongViewModel(MusiqEntities Db)
+        public EditSongViewModel(MusiqEntities Db)
         {
             MusiqEntities = Db;
-            CreateNewArtist = new RelayCommand(Create);
-            CancelNewArtist = new RelayCommand(Cancel);
+            EditSong = new RelayCommand(Edit);
+            CancelEditSong = new RelayCommand(Cancel);
             UploadFileCommand = new RelayCommand(Upload);
             Song = new Song();
             Artists = new ObservableCollection<Artist>(MusiqEntities.Artists);
             MessengerInstance.Register<ArtistUpdateMessage>(this, Message => UpdateArtists());
-
+            MessengerInstance.Register<SongMessage>(this, message => Song = message.Song);
         }
 
         private void Upload()
         {
         }
 
-        public void Create()
+        public void Edit()
         {
-            try
-            {
-                MusiqEntities.Songs.Add(Song);
-                MusiqEntities.SaveChanges();
-                MessengerInstance.Send(new HistoryMessage());
-                Song = new Song();
-            }
-            catch
-            {
-                MessageBox.Show("Unable to create new Song", "", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            MusiqEntities.SaveChanges();
+            MessengerInstance.Send(new HistoryMessage());
+            MessengerInstance.Send(new SongUpdateMessage());
         }
 
         public void Cancel()

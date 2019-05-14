@@ -25,9 +25,7 @@ namespace Musiq.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public virtual DbSet<Artist> Artists { get; set; }
-        public virtual DbSet<Artist_has_song> Artist_has_song { get; set; }
         public virtual DbSet<Playlist> Playlists { get; set; }
         public virtual DbSet<Playlist_has_song> Playlist_has_song { get; set; }
         public virtual DbSet<Song> Songs { get; set; }

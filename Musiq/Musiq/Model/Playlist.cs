@@ -23,6 +23,7 @@ namespace Musiq.Model
         public int Playlist_Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
+        public string ImageLink { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Playlist_has_song> Playlist_has_song { get; set; }

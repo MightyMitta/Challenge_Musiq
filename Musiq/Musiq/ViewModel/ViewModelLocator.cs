@@ -17,6 +17,9 @@ namespace Musiq.ViewModel
             SimpleIoc.Default.Register<CreateArtistViewModel>(true);
             SimpleIoc.Default.Register<CreateSongViewModel>(true);
             SimpleIoc.Default.Register<CreatePlaylistViewModel>(true);
+            SimpleIoc.Default.Register<EditArtistViewModel>(true);
+            SimpleIoc.Default.Register<EditSongViewModel>(true);
+            SimpleIoc.Default.Register<EditPlaylistViewModel>(true);
         }
 
         public MainViewModel Main
@@ -53,6 +56,27 @@ namespace Musiq.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<CreatePlaylistViewModel>();
+            }
+        }
+        public EditArtistViewModel EditArtist
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EditArtistViewModel>();
+            }
+        }
+        public EditSongViewModel EditSong
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EditSongViewModel>();
+            }
+        }
+        public EditPlaylistViewModel EditPlaylist
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<EditPlaylistViewModel>();
             }
         }
 

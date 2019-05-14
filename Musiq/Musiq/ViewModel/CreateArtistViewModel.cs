@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Musiq.Messenger;
@@ -28,9 +29,18 @@ namespace Musiq.ViewModel
 
         public void Create()
         {
-            MusiqEntities.Artists.Add(Artist);
-            MusiqEntities.SaveChanges();
-            MessengerInstance.Send(new HistoryMessage());
+            try
+            {
+                MusiqEntities.Artists.Add(Artist);
+                MusiqEntities.SaveChanges();
+                MessengerInstance.Send(new HistoryMessage());
+                MessengerInstance.Send(new ArtistUpdateMessage());
+                Artist = new Artist();
+            }
+            catch
+            {
+                MessageBox.Show("Unable to create new Artist", "",MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public void Cancel()

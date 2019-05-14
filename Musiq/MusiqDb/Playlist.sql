@@ -2,5 +2,6 @@
 (
 	[Playlist_Id] INT NOT NULL PRIMARY KEY Identity, 
     [Title] VARCHAR(100) NOT NULL, 
-    [Description] VARCHAR(100) NULL
+    [Description] VARCHAR(100) NULL, 
+    [ImageLink] VARCHAR(100) NULL
 )

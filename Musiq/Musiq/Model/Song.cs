@@ -17,17 +17,16 @@ namespace Musiq.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Song()
         {
-            this.Artist_has_song = new HashSet<Artist_has_song>();
             this.Playlist_has_song = new HashSet<Playlist_has_song>();
         }
     
         public int Song_Id { get; set; }
+        public int Artist_Id { get; set; }
         public string Title { get; set; }
-        public string Length { get; set; }
-        public string Cover { get; set; }
+        public string Link { get; set; }
+        public string ImageLink { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Artist_has_song> Artist_has_song { get; set; }
+        public virtual Artist Artist { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Playlist_has_song> Playlist_has_song { get; set; }
     }

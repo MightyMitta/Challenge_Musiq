@@ -82,15 +82,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Messenger\ArtistMessage.cs" />
+    <Compile Include="Messenger\ArtistUpdateMessage.cs" />
     <Compile Include="Messenger\HistoryMessage.cs" />
     <Compile Include="Messenger\PageMessage.cs" />
+    <Compile Include="Messenger\PlaylistMessage.cs" />
+    <Compile Include="Messenger\PlaylistUpdateMessage.cs" />
+    <Compile Include="Messenger\SongMessage.cs" />
+    <Compile Include="Messenger\SongUpdateMessage.cs" />
     <Compile Include="Model\Artist.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Artist_has_song.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\C__RefactorLog.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Model.Context.cs">
@@ -120,6 +120,9 @@
     <Compile Include="ViewModel\CreateArtistViewModel.cs" />
     <Compile Include="ViewModel\CreatePlaylistViewModel.cs" />
     <Compile Include="ViewModel\CreateSongViewModel.cs" />
+    <Compile Include="ViewModel\EditArtistViewModel.cs" />
+    <Compile Include="ViewModel\EditPlaylistViewModel.cs" />
+    <Compile Include="ViewModel\EditSongViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\MenuViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -131,6 +134,15 @@
     </Compile>
     <Compile Include="View\CreateSong.xaml.cs">
       <DependentUpon>CreateSong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditArtist.xaml.cs">
+      <DependentUpon>EditArtist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditPlaylist.xaml.cs">
+      <DependentUpon>EditPlaylist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EditSong.xaml.cs">
+      <DependentUpon>EditSong.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Menu.xaml.cs">
       <DependentUpon>Menu.xaml</DependentUpon>
@@ -144,6 +156,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CreateSong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditArtist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditPlaylist.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EditSong.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,6 +223,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model.edmx</DependentUpon>
@@ -209,9 +236,6 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

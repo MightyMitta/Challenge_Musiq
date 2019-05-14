@@ -12,57 +12,45 @@ using Musiq.Model;
 
 namespace Musiq.ViewModel
 {
-    public class CreatePlaylistViewModel : ViewModelBase
+    public class EditPlaylistViewModel : ViewModelBase
     {
         private ObservableCollection<Song> _unaddedSongs;
         private ObservableCollection<Song> _addedSongs;
         public MusiqEntities MusiqEntities { get; set; }
-        public RelayCommand CreateNewPlaylistCommand { get; set; }
-        public RelayCommand CancelNewPlaylistCommand { get; set; }
+        public RelayCommand EditPlaylistCommand { get; set; }
+        public RelayCommand CancelEditPlaylistCommand { get; set; }
         public Playlist Playlist { get; set; }
         public ObservableCollection<Song> UnaddedSongs { get { return _unaddedSongs; } set { _unaddedSongs = value; } }
         public ObservableCollection<Song> AddedSongs { get { return _addedSongs; } set { _addedSongs = value; } }
         public RelayCommand<Song> AddSongCommand { get; }
         public RelayCommand<Song> RemoveSongCommand { get; }
-        public CreatePlaylistViewModel(MusiqEntities Db)
+        public EditPlaylistViewModel(MusiqEntities Db)
         {
             AddSongCommand = new RelayCommand<Song>(AddSong);
             RemoveSongCommand = new RelayCommand<Song>(RemoveSong);
-
+            MessengerInstance.Register<PlaylistMessage>(this, message => Fill(message.Playlist));
             MusiqEntities = Db;
-            CreateNewPlaylistCommand = new RelayCommand(Create);
-            CancelNewPlaylistCommand = new RelayCommand(Cancel);
+            EditPlaylistCommand = new RelayCommand(Edit);
+            CancelEditPlaylistCommand = new RelayCommand(Cancel);
             Playlist = new Playlist();
             ResetLists();
-
         }
 
-        public void Create()
+        public void Edit()
         {
-            try
+            foreach (Playlist_has_song playlist_Has_Song in Playlist.Playlist_has_song.ToList())
             {
-                if(Playlist.Description == null)
-                {
-                    Playlist.Description = "Default description.";
-                }
-                MusiqEntities.Playlists.Add(Playlist);
-                foreach (Song song in _addedSongs)
-                {
-                    Playlist_has_song playlist_Has_Song = new Playlist_has_song();
-                    playlist_Has_Song.Song = song;
-                    playlist_Has_Song.Playlist = Playlist;
-                    MusiqEntities.Playlist_has_song.Add(playlist_Has_Song);
-                }
-                MusiqEntities.SaveChanges();
-                MessengerInstance.Send(new HistoryMessage());
-                MessengerInstance.Send(new PlaylistUpdateMessage());
-                Playlist = new Playlist();
+                MusiqEntities.Playlist_has_song.Remove(playlist_Has_Song);
             }
-            catch
+            foreach(Song song in _addedSongs)
             {
-                MessageBox.Show("Unable to create new Playlist", "", MessageBoxButton.OK, MessageBoxImage.Error);
+                Playlist_has_song playlist_Has_Song = new Playlist_has_song();
+                playlist_Has_Song.Playlist = Playlist;
+                playlist_Has_Song.Song = song;
+                Playlist.Playlist_has_song.Add(playlist_Has_Song);
             }
-
+            MusiqEntities.SaveChanges();
+            MessengerInstance.Send(new HistoryMessage());
         }
 
         public void Cancel()
@@ -72,8 +60,12 @@ namespace Musiq.ViewModel
         }
         public void ResetLists()
         {
-            _unaddedSongs = new ObservableCollection<Song>(MusiqEntities.Songs);
             _addedSongs = new ObservableCollection<Song>();
+            foreach(Playlist_has_song playlist_Has_Song in Playlist.Playlist_has_song)
+            {
+                _addedSongs.Add(playlist_Has_Song.Song);
+            }
+            _unaddedSongs = new ObservableCollection<Song>(MusiqEntities.Songs.ToList().Where(Song => !_addedSongs.Contains(Song)));
         }
 
         public void AddSong(Song song)
@@ -87,5 +79,11 @@ namespace Musiq.ViewModel
             _addedSongs.Remove(song);
             _unaddedSongs.Add(song);
         }
+        public void Fill(Playlist playlist)
+        {
+            Playlist = playlist;
+            ResetLists();
+        }
     }
 }
+

@@ -4,5 +4,7 @@
     [Firstname] VARCHAR(100) NOT NULL, 
     [Middlename] VARCHAR(100) NULL, 
     [Lastname] VARCHAR(100) NOT NULL, 
-    [DateOfBirth] DATE NOT NULL 
+    [Alias] VARCHAR(100) NOT NULL, 
+    [DateOfBirth] DATE NOT NULL, 
+    [ImageLink] VARCHAR(100) NULL 
 )
