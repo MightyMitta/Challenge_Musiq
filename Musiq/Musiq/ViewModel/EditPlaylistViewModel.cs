@@ -38,6 +38,10 @@ namespace Musiq.ViewModel
 
         public void Edit()
         {
+            if(string.IsNullOrWhiteSpace(Playlist.Description))
+            {
+                Playlist.Description = "Default description.";
+            }
             foreach (Playlist_has_song playlist_Has_Song in Playlist.Playlist_has_song.ToList())
             {
                 MusiqEntities.Playlist_has_song.Remove(playlist_Has_Song);
@@ -50,6 +54,7 @@ namespace Musiq.ViewModel
                 Playlist.Playlist_has_song.Add(playlist_Has_Song);
             }
             MusiqEntities.SaveChanges();
+            MessengerInstance.Send(new PlaylistUpdateMessage());
             MessengerInstance.Send(new HistoryMessage());
         }
 

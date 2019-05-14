@@ -43,14 +43,8 @@ namespace Musiq.ViewModel
             MessengerInstance.Register<HistoryMessage>(this, Message => PageBack());
             #region RelayCommands
             CreateSongCommand = new RelayCommand(CreateSong);
-            EditSongCommand = new RelayCommand(RemoveSong);
-            RemoveSongCommand = new RelayCommand(RemoveSong);
             CreateArtistCommand = new RelayCommand(CreateArtist);
-            EditArtistCommand = new RelayCommand(EditArtist);
-            RemoveArtistCommand = new RelayCommand(RemoveArtist);
             CreatePlaylistCommand = new RelayCommand(CreatePlaylist);
-            EditPlaylistCommand = new RelayCommand(EditPlaylist);
-            RemovePlaylistCommand = new RelayCommand(RemovePlaylist);
             HomeCommand = new RelayCommand(Home);
             #endregion
         }
@@ -80,54 +74,24 @@ namespace Musiq.ViewModel
         public void Home()
         {
             MessengerInstance.Send(new PageMessage(new View.Menu()));
+            History.Clear();
         }
-
-        #region Music Methods
 
         // This method will open a new Window where the user can add a new song.
         public void CreateSong ()
         {
             MessengerInstance.Send(new PageMessage(new CreateSong()));
         }
-        public void EditSong()
-        {
 
-        }
-        public void RemoveSong()
-        {
-
-        }
-        #endregion
-
-        #region Artist Methods
         public void CreateArtist()
         {
             MessengerInstance.Send(new PageMessage(new CreateArtist()));
         }
-        public void EditArtist()
-        {
 
-        }
-        public void RemoveArtist()
-        {
-
-        }
-        #endregion
-
-        #region Playlist Methods
         public void CreatePlaylist()
         {
             MessengerInstance.Send(new PageMessage(new CreatePlaylist()));
         }
-        public void EditPlaylist()
-        {
 
-        }
-        public void RemovePlaylist()
-        {
-
-        }
-
-        #endregion
     }
 }

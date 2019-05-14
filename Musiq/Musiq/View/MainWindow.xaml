@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Musiq"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1024"  DataContext="{Binding Source={StaticResource Locator}, Path=Main}" Background="#FF181818" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="MainWindow" Height="800" Width="1024"  DataContext="{Binding Source={StaticResource Locator}, Path=Main}" Background="#FF181818" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -18,7 +18,7 @@
 
         <StackPanel Background="#FF121212" Grid.Row="2">
             <StackPanel>
-                <Button Margin="0,20,0,0" Width="150" Height="30" HorizontalContentAlignment="Left">
+                <Button Margin="0,20,0,0" Width="150" Height="30" HorizontalContentAlignment="Left" Command="{Binding HomeCommand}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="Home" FontSize="30" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         <Label Content="Home"/>

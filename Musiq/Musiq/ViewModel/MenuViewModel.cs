@@ -14,6 +14,7 @@ namespace Musiq.ViewModel
 {
     public class MenuViewModel : ViewModelBase
     {
+        public string SongInfo { get; set; }
         public RelayCommand<Artist> EditArtistCommand { get; set; }
         public RelayCommand<Artist> RemoveArtistCommand { get; set; }
         public RelayCommand<Song> EditSongCommand { get; set; }
@@ -46,6 +47,10 @@ namespace Musiq.ViewModel
 
         private void RemovePlaylist(Playlist playlist)
         {
+            foreach(Playlist_has_song playlist_has_song in playlist.Playlist_has_song.ToList())
+            {
+                MusiqEntities.Playlist_has_song.Remove(playlist_has_song);
+            }
             MusiqEntities.Playlists.Remove(playlist);
             MusiqEntities.SaveChanges();
             MessengerInstance.Send(new PlaylistUpdateMessage());
@@ -53,6 +58,8 @@ namespace Musiq.ViewModel
 
         private void UpdatePlaylist()
         {
+            Playlists = new ObservableCollection<Playlist>(MusiqEntities.Playlists);
+            RaisePropertyChanged("Playlists");
         }
 
         private void EditPlaylist(Playlist playlist)
@@ -87,6 +94,10 @@ namespace Musiq.ViewModel
         }
         public void RemoveSong(Song song)
         {
+            foreach(Playlist_has_song playlist_has_song in song.Playlist_has_song.ToList())
+            {
+                MusiqEntities.Playlist_has_song.Remove(playlist_has_song);
+            }
             MusiqEntities.Songs.Remove(song);
             MusiqEntities.SaveChanges();
             MessengerInstance.Send(new SongUpdateMessage());
@@ -94,7 +105,7 @@ namespace Musiq.ViewModel
 
         public void UpdateSong()
         {
-            Artists = new ObservableCollection<Artist>(MusiqEntities.Artists);
+            Songs = new ObservableCollection<Song>(MusiqEntities.Songs);
             RaisePropertyChanged("Songs");
         }
     }

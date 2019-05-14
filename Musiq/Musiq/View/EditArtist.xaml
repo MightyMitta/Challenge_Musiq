@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Musiq.View"
       mc:Ignorable="d" 
-      d:DesignHeight="900" d:DesignWidth="868"
+      d:DesignHeight="800" d:DesignWidth="868"
       Title="EditArtist" DataContext="{Binding Source={StaticResource Locator}, Path=EditArtist}">
     <Grid Background="#FF181818">
         <Grid.Resources>
@@ -39,19 +39,19 @@
         <StackPanel Grid.Row="1" Margin="50">
             <DockPanel Width="400" Margin="0,20,0,0">
                 <Label Content="Firstname:"/>
-                <TextBox Text="{Binding Artist.Firstname, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="{Binding Artist.Firstname, UpdateSourceTrigger=PropertyChanged}" MaxLength="20"/>
             </DockPanel>
             <DockPanel Width="400" Margin="0,10,0,0">
                 <Label Content="Middlename:"/>
-                <TextBox Text="{Binding Artist.Middlename, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="{Binding Artist.Middlename, UpdateSourceTrigger=PropertyChanged}" MaxLength="20"/>
             </DockPanel>
             <DockPanel Width="400" Margin="0,10,0,0">
                 <Label Content="Lastname:"/>
-                <TextBox Text="{Binding Artist.Lastname, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="{Binding Artist.Lastname, UpdateSourceTrigger=PropertyChanged}" MaxLength="20"/>
             </DockPanel>
             <DockPanel Width="400" Margin="0,10,0,0">
                 <Label Content="Alias:"/>
-                <TextBox Text="{Binding Artist.Alias, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="{Binding Artist.Alias, UpdateSourceTrigger=PropertyChanged}" MaxLength="20"/>
             </DockPanel>
             <DockPanel Width="400" Margin="0,10,0,0">
                 <Label Content="Date of Birth:"/>
@@ -59,7 +59,7 @@
             </DockPanel>
             <DockPanel Width="400" Margin="0,10,0,0">
                 <Label Content="Image Link:"/>
-                <TextBox Text="{Binding Artist.ImageLink, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBox Text="{Binding Artist.ImageLink, UpdateSourceTrigger=PropertyChanged}"  IsEnabled="False"/>
             </DockPanel>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">

@@ -41,9 +41,11 @@ namespace Musiq.ViewModel
         {
             try
             {
+                Song.Link = "[TEST LINK]";
                 MusiqEntities.Songs.Add(Song);
                 MusiqEntities.SaveChanges();
                 MessengerInstance.Send(new HistoryMessage());
+                MessengerInstance.Send(new SongUpdateMessage());
                 Song = new Song();
             }
             catch

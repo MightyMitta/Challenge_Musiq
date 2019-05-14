@@ -26,15 +26,15 @@ namespace Musiq.ViewModel
         public RelayCommand<Song> RemoveSongCommand { get; }
         public CreatePlaylistViewModel(MusiqEntities Db)
         {
+            Playlist = new Playlist();
             AddSongCommand = new RelayCommand<Song>(AddSong);
             RemoveSongCommand = new RelayCommand<Song>(RemoveSong);
 
+            MessengerInstance.Register<SongUpdateMessage>(this, message => ResetLists());
             MusiqEntities = Db;
             CreateNewPlaylistCommand = new RelayCommand(Create);
             CancelNewPlaylistCommand = new RelayCommand(Cancel);
-            Playlist = new Playlist();
             ResetLists();
-
         }
 
         public void Create()
@@ -57,6 +57,7 @@ namespace Musiq.ViewModel
                 MessengerInstance.Send(new HistoryMessage());
                 MessengerInstance.Send(new PlaylistUpdateMessage());
                 Playlist = new Playlist();
+                ResetLists();
             }
             catch
             {
@@ -68,6 +69,7 @@ namespace Musiq.ViewModel
         public void Cancel()
         {
             Playlist = new Playlist();
+            ResetLists();
             MessengerInstance.Send(new HistoryMessage());
         }
         public void ResetLists()
