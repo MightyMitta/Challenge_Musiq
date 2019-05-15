@@ -13,7 +13,7 @@
         <DataTemplate x:Key="artistList" DataType="{x:Type db:Artist}">
             <Grid Background="#FF5A5A5A" Margin="5,0,5,0" Height="200" Width="200">
                 <StackPanel>
-                    <Image Source="https://img.icons8.com/ios/100/000000/micro-filled.png" VerticalAlignment="Top" Width="100" Height="100" Margin="0,5,0,0"/>
+                    <Image Source="/Images/Artist.png" VerticalAlignment="Top" Width="100" Height="100" Margin="0,5,0,0"/>
                     <Label HorizontalAlignment="Center">
                         <StackPanel>
                             <StackPanel>
@@ -44,7 +44,7 @@
         <DataTemplate x:Key="songList" DataType="{x:Type db:Song}">
             <Grid Background="#FF5A5A5A" Margin="5,0,5,0" Height="200" Width="200">
                 <StackPanel>
-                    <Image Source="https://img.icons8.com/ios/100/000000/cd-filled.png" VerticalAlignment="Top" Width="100" Height="100"  Margin="0,5,0,0"/>
+                    <Image Source="/Images/CD.png" VerticalAlignment="Top" Width="100" Height="100"  Margin="0,5,0,0"/>
                     <Label HorizontalAlignment="Center">
                         <StackPanel>
                             <StackPanel>
@@ -75,7 +75,7 @@
         <DataTemplate x:Key="playlistList" DataType="{x:Type db:Playlist}">
             <Grid Background="#FF5A5A5A" Margin="5,0,5,0" Height="200" Width="200">
                 <StackPanel>
-                    <Image Source="https://img.icons8.com/ios/100/000000/personal-video-recorder-menu-filled.png" VerticalAlignment="Top" Width="100"  Margin="0,5,0,0" Height="100"/>
+                    <Image Source="/Images/Playlist.png" VerticalAlignment="Top" Width="100"  Margin="0,5,0,0" Height="100"/>
                     <Label HorizontalAlignment="Center">
                         <StackPanel>
                             <StackPanel>
